@@ -1,0 +1,7 @@
+#container {
+  align-content: space-around;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 1500px;
+}
