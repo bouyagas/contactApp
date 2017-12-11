@@ -3,9 +3,9 @@ import './ContactItem.css';
 
 const ContactItem = (props) => (
 	<div>
-		<h4>{props.first}</h4>
-		<h4>{props.last}</h4>
-		<h4>{props.email}</h4>
+		<h4>{props.firstName}</h4>
+		<h4>{props.lastName}</h4>
+		<h4>{props.emailAddress}</h4>
 		<button onClink={() => props.deleteContact(props.id)}>
 			X
 		</button>

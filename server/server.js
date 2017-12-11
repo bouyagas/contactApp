@@ -1,8 +1,9 @@
 'use strict';
-const express = require('express');
-const path = require('path');
-const middleware = require('./middleware/serverMiddleware.js');
-const contactRoute = require('./api/contactApi/contactRoutes.js');
+
+import express from 'express';
+import path from 'path';
+import middleware from './middleware/serverMiddleware.js';
+import contactRoute from './api/contactApi/contactRoutes.js';
 
 const server = express();
 
@@ -12,4 +13,4 @@ server.use(express.static(path.join(__dirname, '../client/dist')));
 middleware(server);
 server.use('/api/contact', contactRoute);
 
-module.exports = server;
+ export default server;

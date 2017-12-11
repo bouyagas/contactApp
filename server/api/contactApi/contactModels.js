@@ -1,6 +1,6 @@
 'use strict';
 
-const { bookshelf }  = require('../../dbConfig/bookshelf.js');
+import bookshelf from '../../dbConfig/bookshelf.js';
 
 const Contact = bookshelf.Model.extend({
  tableName: 'contacts',
@@ -59,6 +59,5 @@ const contactModel = {};
   .catch(error => next(error));
 };
 
-module.exports = {
- contactModel
-};
+
+ export default contactModel;

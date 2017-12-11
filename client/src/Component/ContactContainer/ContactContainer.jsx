@@ -1,4 +1,7 @@
+'use strict';
+
 import React, { Component } from 'react';
+import _ from 'underscore';
 import { Link } from 'react-router-dom';
 import './ContactContainer.css';
 import { print } from '../../../../libs/utils.js';
@@ -45,7 +48,7 @@ export default class ContactContainer extends React.Component {
       method: 'DELETE',
     })
     .then(() => {
-      let contacts = this.state.contacts.filter((contact) => {
+      let contacts = _.filter(this.state.contacts, (contact) => {
         return contact.id !== id;
       })
       this.setState({ contacts });
@@ -57,14 +60,14 @@ export default class ContactContainer extends React.Component {
   }
 
   renderContacts() {
-    return this.state.contacts.map((contact, i) => {
+    return _.map(this.state.contacts, (contact, i) => {
       <ContactItem
-      key={i}
-      id={contact.id}
-      first={contact.firstName}
-      last={contact.lastName}
-      email={contact.emailAddress}
-      deleteContact={this.deleteContact.bind(this)}
+        key={i}
+        id={contact.id}
+        firstName={contact.firstName}
+        lastName={contact.lastName}
+        emailAddress={contact.emailAddress}
+        deleteContact={this.deleteContact.bind(this)}
       />
     });
   }
@@ -73,7 +76,7 @@ export default class ContactContainer extends React.Component {
     return (
       <div id='container'>
 		   {this.renderContacts()}
-        <Link to='/contact/form'></Link>
+        <Link to='/form'></Link>
       </div>
     );
   }

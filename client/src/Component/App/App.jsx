@@ -62,24 +62,7 @@ export default class App extends React.Component {
     });
   }
 
-  deleteContact(id) {
-    fetch(`http://localhost:3000/api/contact/${id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
-    })
-    .then(() => {
-      let contacts = this.state.contacts.filter((contact) => {
-        return contact.id !== id;
-      })
-      this.setState({ contacts });
-    })
-    .then(alertInfo('A contact has been deleted'))
-    .catch((error) => {
-      return print(error);
-    });
-  }
+
 
   render() {
     return (
@@ -87,10 +70,10 @@ export default class App extends React.Component {
         <h3> My Contact </h3>
         <Switch>
           <Route exact path="/" component={ContactContainer} />
-          <Route path="/contact/form" component={ContactForm} />
+          <Route path="/form" component={ContactForm} />
           <Redirect path="*" to="/" />
         </Switch>
-         <Link to="/contact/form">Form</Link>
+         <Link to="/form">Form</Link>
       </div>
     );
   }

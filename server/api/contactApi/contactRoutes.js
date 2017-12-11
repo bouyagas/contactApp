@@ -1,8 +1,10 @@
 'use strict';
 
-const contactRoute = require('express').Router();
-const { contactModel } = require('./contactModels.js');
-const { getJSONrep, postJSONrep, updateJSONrep, deleteJSONrep } = require('../../../libs/utils.js');
+import express from 'express';
+import contactModel from './contactModels.js';
+import { getJSONrep, postJSONrep, updateJSONrep, deleteJSONrep } from '../../../libs/utils.js';
+
+const contactRoute = express.Router();
 
 contactRoute.route('/')
   .get(contactModel.getAllContacts, getJSONrep)
@@ -13,4 +15,4 @@ contactRoute.route('/:id')
  .put(contactModel.updateContact, updateJSONrep)
  .delete(contactModel.deleteContact, deleteJSONrep);
 
-module.exports = contactRoute;
+export default contactRoute;
