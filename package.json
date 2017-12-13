@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "migrate": "knex migrate:latest",
-    "start": " nodemon --watch index --exec babel-node -- index.js",
+    "start": "npm-run-all --parallel server watch",
+    "server": "nodemon --watch index --exec babel-node -- index.js",
     "watch": "webpack -d --progress --watch "
   },
   "keywords": [
@@ -59,6 +60,7 @@
     "html-webpack-template": "^6.1.0",
     "mocha": "^4.0.1",
     "nodemon": "^1.12.5",
+    "npm-run-all": "^4.1.2",
     "postcss-loader": "^2.0.9",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
