@@ -5,6 +5,7 @@
     ["transform-object-rest-spread"],
     ["transform-strict-mode", {
       "strict": true
-    }]
+    }],
+    ["react-hot-loader/babel"]
   ]
 }

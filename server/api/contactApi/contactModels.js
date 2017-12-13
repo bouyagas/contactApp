@@ -9,7 +9,7 @@ const Contact = bookshelf.Model.extend({
 const contactModel = {};
 
  contactModel.getAllContacts = (req, res, next) => {
-  return Contact.fetchAll()
+  return Contact.forge().orderBy('id', 'DESC').fetchAll()
   .then((contacts) => {
    res.contacts = contacts;
    next();

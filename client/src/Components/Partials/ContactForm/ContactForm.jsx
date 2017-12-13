@@ -12,7 +12,13 @@ export default class ContactForm extends React.Component {
         firstName: '',
         lastName: '',
         emailAddress: ''
-      }
+      },
+      myContact: 'My Contacts',
+      submit: 'Submit',
+      first: 'FirstName',
+      last: 'LastName',
+      email: 'EmailAddress',
+      text: 'text'
     };
   }
 
@@ -82,28 +88,30 @@ export default class ContactForm extends React.Component {
         <div id='form-container'>
         	<form onSubmit={this.createContact.bind(this)}>
   				<input
-  					type="text"
-  					placeholder="FirstName"
+  					type={this.state.text}
+  					placeholder={this.state.first}
   					value={this.state.contact.firstName}
   					onChange={event => this.handleUpdateFirstName(event)}
   				/>
   				<input
-  					type="text"
-  					placeholder="LastName"
+  					type={this.state.text}
+  					placeholder={this.state.last}
   					value={this.state.contact.lastName}
   					onChange={event => this.handleUpdateLastName(event)}
   				/>
   				<input
-  					type="text"
-  					placeholder="EmailAddress"
+  					type={this.state.text}
+  					placeholder={this.state.email}
   					value={this.state.contact.emailAddress}
   					onChange={event => this.handleUpdateEmailAddress(event)}
   				/>
-  				<button className='search-button'>Submit</button>
+          <br/>
+  				<button className='waves-effect waves-light btn'>{this.state.submit}</button>
           	</form>
         </div>
-        <Link to='/'>My Contacts</Link>
+        <Link to={'/'}>{this.state.myContact}</Link>
       </div>
     );
   }
 }
+

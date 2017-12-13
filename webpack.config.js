@@ -31,6 +31,7 @@ const config = {
   resolve: {
     extensions: ['.js', '.jsx'],
   },
+
   plugins: [
     new webpack.optimize.CommonsChunkPlugin({
       names:     ['common', 'main'],
@@ -99,7 +100,7 @@ const config = {
         }),
       },
       {
-        test: /\.jsx?$/,
+        test: /\.(js|jsx)$/,
         use:  [{
           loader: 'babel-loader',
         }],
@@ -109,7 +110,7 @@ const config = {
         test: /\.css$/,
         use:  ExtractTextPlugin.extract({
           fallback: 'style-loader',
-          use:      'css-loader',
+          use: 'css-loader',
         }),
       },
       {
@@ -171,9 +172,7 @@ const config = {
   },
 };
 
-if (process.env &&
-  process.env.NODE_ENV &&
-  process.env.NODE_ENV === 'production') {
+if (process.env && process.env.NODE_ENV && process.env.NODE_ENV === 'production') {
   const prodPlugins = [
     new webpack.optimize.UglifyJsPlugin({
       compress: {
