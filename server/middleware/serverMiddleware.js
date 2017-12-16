@@ -2,7 +2,6 @@
 
 import logger  from 'morgan';
 import helmet from 'helmet';
-import webpack from 'webpack';
 import expressSession from 'express-session';
 import bodyParser from 'body-parser';
 import compression from 'compression';

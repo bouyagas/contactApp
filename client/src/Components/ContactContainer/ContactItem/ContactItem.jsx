@@ -1,19 +1,58 @@
 import React from 'react';
+import { Button,  withStyles,
+	List, ListItem, ListItemIcon, ListItemText, Divider,
+}  from 'material-ui';
+import PersonIcon from 'material-ui-icons/Person';
+import EmailIcon from 'material-ui-icons/Email';
 import './ContactItem.css';
 
-const ContactItem = (props) => (
-    <div className="row">
-	<div className="col s6 push-s3 ">
-      <ul className="collection">
-		<li className="collection-item">Fisrt Name: {props.firstName}</li>
-		<li className="collection-item">Last Name: {props.lastName}</li>
-		<li className="collection-item">Email: {props.emailAddress}</li>
-		<button className="waves-effect waves-light btn" onClick={() => props.deleteContacts(props.id)}>
-			Abandon 😢
-		</button>
-      </ul>
-	</div>
-</div>
-);
+const styles = theme => ({
+  root: {
+    width: '50%',
+    marginLeft: 350,
+    background: theme.palette.background.paper,
+  },
+   button: {
+    margin: theme.spacing.unit,
+  },
+});
 
-export default ContactItem;
+const ContactItem = (props) => {
+	const { classes } = props;
+
+  return (
+		 <div className={classes.root}>
+			<List>
+        <Divider/>
+				<ListItem button>
+					<ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText primary={props.firstName} />
+				</ListItem>
+
+				<ListItem button>
+					<ListItemIcon>
+            <PersonIcon />
+          </ListItemIcon>
+          <ListItemText primary={props.lastName} />
+				</ListItem>
+
+				<ListItem button>
+					<ListItemIcon>
+            <EmailIcon />
+          </ListItemIcon>
+          <ListItemText primary={props.emailAddress} />
+				</ListItem>
+				<Button raised color="primary" className={classes.button} onClick={() => props.deleteContacts(props.id)}>
+						Abandon 😢
+				</Button>
+        <Divider/>
+			</List>
+		 </div>
+  );
+};
+
+
+
+export default withStyles(styles)(ContactItem);

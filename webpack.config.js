@@ -55,8 +55,7 @@ const config = {
       template:   htmlTemplate,
       appMountId: 'root-container',
       links: [
-          'https://fonts.googleapis.com/css?family=Pangolin',
-          'https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css'
+          'https://fonts.googleapis.com/css?family=Roboto:300,400,500'
       ],
       meta: [
         {

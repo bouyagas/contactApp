@@ -5,6 +5,11 @@
   flex-wrap: wrap;
   height: 1500px;
 }
+
+
+li {
+  text-transform: capitalize;
+}
 #form-container {
   display: flex;
   justify-content: center;
@@ -15,7 +20,21 @@
   margin: 15px 5px;
 }
 
+.button {
+height: 50;
+width: 240;
+}
+
+a:link {
+    text-decoration: none;
+    color: #ffffff;
+}
+.material {
+  font-family: 'Roboto', sans-serif;
+}
 
 h3 {
+font-size: 50px;
  text-align: center;
+ margin-top: 100px;
 }

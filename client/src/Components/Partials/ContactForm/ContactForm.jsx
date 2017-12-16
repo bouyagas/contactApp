@@ -1,9 +1,24 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { withStyles, TextField  } from 'material-ui';
 import{ print, alertInfo } from '../../../../../libs/utils.js';
 import  './ContactForm.css';
 
-export default class ContactForm extends React.Component {
+const styles = theme => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  textField: {
+    marginLeft: theme.spacing.unit,
+    margin: theme.spacing.unit,
+    width: 500,
+  },
+});
+
+ class ContactForm extends React.Component {
 
   constructor(props) {
     super(props);
@@ -15,9 +30,9 @@ export default class ContactForm extends React.Component {
       },
       myContact: 'My Contacts',
       submit: 'Submit',
-      first: 'FirstName',
-      last: 'LastName',
-      email: 'EmailAddress',
+      first: 'First Name',
+      last: 'Last Name',
+      email: 'Email Address',
       text: 'text'
     };
   }
@@ -41,6 +56,9 @@ export default class ContactForm extends React.Component {
         emailAddress: ''
       }
     }))
+    .then(() =>{
+      props.history.push('/');
+    })
     .then(alertInfo('A contact has been saved'))
     .catch((error) => {
       return print(error);
@@ -83,35 +101,43 @@ export default class ContactForm extends React.Component {
 
 
   render() {
+
+    const { classes } = this.props;
+
     return (
-      <div>
         <div id='form-container'>
-        	<form onSubmit={this.createContact.bind(this)}>
-  				<input
-  					type={this.state.text}
-  					placeholder={this.state.first}
-  					value={this.state.contact.firstName}
-  					onChange={event => this.handleUpdateFirstName(event)}
-  				/>
-  				<input
-  					type={this.state.text}
-  					placeholder={this.state.last}
-  					value={this.state.contact.lastName}
-  					onChange={event => this.handleUpdateLastName(event)}
-  				/>
-  				<input
-  					type={this.state.text}
-  					placeholder={this.state.email}
-  					value={this.state.contact.emailAddress}
-  					onChange={event => this.handleUpdateEmailAddress(event)}
-  				/>
-          <br/>
-  				<button className='waves-effect waves-light btn'>{this.state.submit}</button>
-          	</form>
-        </div>
-        <Link to={'/'}>{this.state.myContact}</Link>
+        	<form className={classes.container} onSubmit={this.createContact.bind(this)}>
+          <TextField
+            label={this.state.first}
+            className={classes.textField}
+            type={this.state.text}
+            margin="normal"
+            value={this.state.contact.firstName}
+            onChange={event => this.handleUpdateFirstName(event)}
+          />
+
+         <TextField
+          label={this.state.last}
+          className={classes.textField}
+          type={this.state.text}
+          margin="normal"
+          value={this.state.contact.lastName}
+          onChange={event => this.handleUpdateLastName(event)}
+         />
+
+        <TextField
+          label={this.state.email}
+          className={classes.textField}
+          type={this.state.text}
+          margin="normal"
+          value={this.state.contact.emailAddress}
+          onChange={event => this.handleUpdateEmailAddress(event)}
+         />
+          <button className='button'>{this.state.submit}</button>
+        </form>
       </div>
     );
   }
 }
 
+export default withStyles(styles)(ContactForm);

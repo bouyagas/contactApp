@@ -29,6 +29,8 @@
     "immutable": "^3.8.2",
     "jsonwebtoken": "^8.1.0",
     "knex": "^0.14.2",
+    "material-ui": "^1.0.0-beta.23",
+    "material-ui-icons": "^1.0.0-beta.17",
     "morgan": "^1.9.0",
     "node-fetch": "^1.7.3",
     "path": "^0.12.7",

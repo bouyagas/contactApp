@@ -3,6 +3,7 @@ import { Switch, Route, Redirect, Link } from 'react-router-dom';
 import { print, alertInfo } from '../../../../libs/utils.js';
 import ContactContainer from '../ContactContainer/ContactContainer.jsx';
 import ContactForm from '../Partials/ContactForm/ContactForm.jsx';
+import NavBar from '../Partials/NavBar/NavBar.jsx';
 import './App.css';
 
 
@@ -10,39 +11,14 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      // contactContainer
-      contacts: [],
-      form: 'Contact Form',
      };
   };
 
   componentDidMount() {
     window.scrollTo(0, 0);
-    this.getAllContact();
   }
 
   // API from the local Server
-   getAllContact() {
-    fetch('http://localhost:3000/api/contact/', {
-      method: 'GET',
-      headers: new Headers({
-        'Content-type': 'application/json',
-      }),
-    })
-    .then((response) => {
-      return response.json();
-    })
-    .then((data) => {
-      print(data);
-      this.setState({
-        contacts: data,
-      });
-    })
-    .catch((error) => {
-      return print(error);
-    });
-  }
-
 
   getSingleContact(id) {
     fetch(`http://localhost:3000/api/contact/${id}`, {
@@ -115,36 +91,12 @@ export default class App extends React.Component {
     });
   }
 
-  deleteContact(id) {
-    fetch(`http://localhost:3000/api/contact/${id}`, {
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      method: 'DELETE',
-    })
-    .then(() => {
-      let contacts = _.filter(this.state.contacts, (contact) => {
-        return contact.id !== id;
-      })
-      this.setState({ contacts });
-    })
-    .then(alertInfo('A contact has been deleted'))
-    .catch((error) => {
-      return print(error);
-    });
-  }
 
   render() {
     return (
-      <div >
+      <div className='material'>
+      <NavBar/>
         <h3> My Contact </h3>
-
-        <ContactContainer
-         contacts={this.state.contacts}
-         form={this.state.form}
-         deleteContacts={this.deleteContact.bind(this)}
-        />
-
         <Switch>
           <Route exact path={"/"} component={ContactContainer} />
           <Route path={"/form"} component={ContactForm} />
